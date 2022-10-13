@@ -46,7 +46,17 @@ end
 # Part 2, Step 3
 Then /^I should (not )?see the following movies: (.*)$/ do |no, movie_list|
   # Take a look at web_steps.rb Then /^(?:|I )should see "([^"]*)"$/
-  pending "Fill in this step in movie_steps.rb"
+  if no
+    movie_list.split(",").each do |movie_title|
+      step %Q{I should not see "#{movie_title.strip()}"}
+    end
+  else
+    movie_list.split(",").each do |movie_title|
+      step %Q{I should see "#{movie_title.strip()}"}
+    end
+  end
+
+  # pending "Fill in this step in movie_steps.rb"
 end
 
 Then /I should see all the movies/ do
