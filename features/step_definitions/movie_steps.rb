@@ -61,7 +61,8 @@ end
 
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
-  pending "Fill in this step in movie_steps.rb"
+  num_rows_in_tbl = page.all('#movies tr').size - 1 # subtract one to eliminate the column names
+  expect(num_rows_in_tbl).to eq Movie.count  
 end
 
 ### Utility Steps Just for this assignment.
