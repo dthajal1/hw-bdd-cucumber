@@ -30,7 +30,17 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   # HINT: use String#split to split up the rating_list, then
   #   iterate over the ratings and reuse the "When I check..." or
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
-  pending "Fill in this step in movie_steps.rb"
+  if uncheck
+    rating_list.split(",").each do |rating|
+      step %Q{I uncheck "#{rating.strip()}" checkbox}
+    end
+  else
+    rating_list.split(",").each do |rating|
+      step %Q{I check "#{rating.strip()}" checkbox}
+    end
+  end
+ 
+  # pending "Fill in this step in movie_steps.rb"
 end
 
 # Part 2, Step 3
