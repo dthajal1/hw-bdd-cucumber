@@ -20,12 +20,10 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
 
-  result = []
-  all(".title").each do |elem|
-    result.append(elem.text)
-  end
 
-  expect(result.find_index(e1)).to be < result.find_index(e2)
+  e1_pos = page.body.index(e1)
+  e2_pos = page.body.index(e2)
+  expect(e1_pos).to be < e2_pos
 end
 
 # Make it easier to express checking or unchecking several boxes at once
